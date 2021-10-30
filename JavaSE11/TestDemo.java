@@ -10,7 +10,7 @@ public class TestDemo {
         myLinkedList.addLast(2);
         myLinkedList.addLast(3);
         myLinkedList.addIndex(3,9);
-        myLinkedList.removeAllKey(3);
+//        myLinkedList.removeAllKey(3);
         myLinkedList.display();
 
     }

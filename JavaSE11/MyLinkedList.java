@@ -6,7 +6,7 @@ public class MyLinkedList {  //不带头结点
 
     //头插法
     public void addFirst(int data){
-        Node node = new Node(data);
+        Node node = new Node(data);    //先创建一个node，把数据放进这个node，再把这个node头插
 
         if(this.head == null){    //注意这里要进行特判
             this.head = node;
@@ -43,9 +43,10 @@ public class MyLinkedList {  //不带头结点
 
     public Node searchPrev(int index){     //返回index所对应结点的前一个结点
         Node p = this.head;
-        while(index-1 > 0){
+        int count = 0;
+        while(count < index-1){
             p = p.next;
-            index--;
+            count++;
         }
         return p;
     }
@@ -53,24 +54,23 @@ public class MyLinkedList {  //不带头结点
     //任意位置插入,第一个数据节点为0号下标
     public boolean addIndex(int index,int data){
         int len = this.size();
-        if (index > len ||index < 0){
+        if (index > len ||index < 0){   //对index合法性特判
             return false;
         }
-        if(index == 0){
+        if(index == 0){   //当在头部插入时，使用头插法
             this.addFirst(data);
             return true;
         }
-        if (index == len){
+        if (index == len){  //当在尾部插入时，使用尾插法
             this.addLast(data);
             return true;
         }else {
-            Node p = this.searchPrev(index);
+            Node p = this.searchPrev(index); //找到index所对应结点的前一个结点
             Node node = new Node(data);
             node.next = p.next;
             p.next = node;
             return true;
         }
-
     }
 
 
@@ -93,27 +93,18 @@ public class MyLinkedList {  //不带头结点
             System.out.println("链表为空");
             return;
         }
-        if (!this.contains(key)){
-            System.out.println("非法的key");
-            return;
-        }
         if(this.head.data == key){
             this.head = this.head.next;
             return;
         }
         Node pre = searchPreNode(key);
         pre.next = pre.next.next;
-
     }
     //删除所有值为key的节点
     public void removeAllKey(int key){
         if (this.head == null){
             System.out.println("链表为空");
         }
-        if (!this.contains(key)){
-            System.out.println("非法的key");
-        }
-
 //        Node p = this.head;
 //        while (p.next != null){
 //            if(p.next.data == key){   //如果key的值在最后一位，那么
@@ -159,5 +150,7 @@ public class MyLinkedList {  //不带头结点
             cur = cur.next;
         }
     }
-//    public void clear();
+  public void clear(){
+        this.head = null;
+  }
 }
