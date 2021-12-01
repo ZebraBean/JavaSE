@@ -1,4 +1,4 @@
-package Tests.JavaSE19;
+package JavaSE.JavaSE19;
 
 /**
  * Created with IntelliJ IDEA.
